@@ -11,33 +11,128 @@
 			position:relative ; z-index:1000 }
 		header > h1 { margin:0 ; font-size:12px ; font-family:sans-serif ;
 			border-bottom:1px #999 solid ; padding:5px 10px ; line-height:17px }
+		.container{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;overflow:hidden;}ul{margin:0;list-style:none;font-size:3vw;transform-style:preserve-3d;}li{position:absolute;top:50%;left:50%;opacity:0.8;}@keyframes spin{0%{transform:rotateX(-100deg)rotate(0);}100%{transform:rotateX(-100deg)rotate(-360deg);}}.slidecontainer{position:absolute;bottom:5%;}
+		p {
+		color: rgb(0, 0, 0);
+		font-family:sans-serif ;
+		font-size: max(2vh, 2vw);
+		line-height: 1.4;
+		margin-bottom: 0;
+	  }
 	</style>
 </head>
 <body>
 
-	<p id="a" style="color:gray;top:50vh;position:fixed;text-align:center;width:100%;z-index:999;background:black;"></p><div class="c" id="u" style="position:absolute;"><p>This universe is the</p></div><div class="c" id="s" style="position:fixed;text-align:center;"><p>on the shores of the finite.</p></div>
+	<p id="a" style="color:rgb(255, 255, 255);top:50vh;position:fixed;text-align:center;width:100%;z-index:999;background:rgb(173, 173, 173);"></p>
+<div class="c" id="u" style="position:absolute;"><p>Is anyone there?</p></div>
+<div class="c" id="s" style="position:fixed;text-align:center;"><p>I can't see</p></div>
+
+	<div class="container"><ul id="1"></ul><ul id="2"></ul><ul id="3"></ul><ul id="4"></ul><ul id="5"></ul><ul id="6"></ul><ul id="7"></ul><ul id="8"></ul><ul id="9"></ul>
+		<div class="slidecontainer">
+		<input type="range" min="0.1" max="3.0" value="0.5" step=".05" id="speed">
+		</div>
+		</div>
+
 	<script>
-		d=document;b=d.body;b.style.background='black';q='max(4vh,4vw)';
-		u=d.getElementById('u');us=u.style;us.top='40px+'+q;us.left=q;
-		s=d.getElementById('s');ss=s.style;ss.bottom=q;ss.right=q;
-		z={x:-1,y:-1};
-		var y=d.createElement('style');y.type='text/css';var k='\ @keyframes n {\ 0%{\ color:white;\ zIndex:100;\ }\ 50%{\ color:white;\ }\ 100%{\ color:black;\ top:'+s.offsetTop+'px;\ left:'+s.offsetLeft+'px;\ zIndex:0;\ }\ }';y.innerHTML=k;d.getElementsByTagName('head')[0].appendChild(y);
-		de=d.documentElement;h=de.clientHeight;w=de.clientWidth;g=Math.sqrt((z.x-w)**2+(z.y-h)**2);m=12/g;
-		setInterval(D,500,0);
-		setTimeout(function(){d.getElementById('a').textContent+="[Drag your mouse or finger to create your own wreckage]";d.addEventListener('mousemove',P);d.addEventListener('touchmove',T);},14000);
-		function R(){d.getElementById('a').textContent="";}
-		function T(e){R();z.x=e.touches[0].clientX;z.y=e.touches[0].clientY;D();}
-		function P(e){R();z.x=e.clientX;z.y=e.clientY;D();}
-		function D(){var p=d.createElement("p");p.textContent+="wreckage of the infinite";ps=p.style;ps.position='absolute';ws=window.screen;
-		if(z.x==-1){
-			if(ws.availHeight<ws.availWidth){
-				ps.top=u.offsetTop+'px';var v=u.offsetLeft+u.offsetWidth;ps.left=v+'px';}
-			else{var v=u.offsetTop+u.offsetHeight+'px';ps.top=v;ps.left=u.offsetLeft+'px';}}
-		else{ps.top=z.y+'px';ps.left=z.x+'px';}ps.color='black';ps.zIndex='0';c=Math.sqrt((z.x-w)**2+(z.y-h)**2);var v=m*c;ps.animation="n "+v+"s linear forwards";b.appendChild(p);}
-		</script>
-		<style>
-		p {color:white;font-size:max(2vh,2vw);line-height:1.4;margin-bottom:0;}
-		.c {max-width:20%;z-index:999;}
-		</style>
+	  d = document;
+  b = d.body;
+  q = 'max(4vh,4vw)';
+  u = d.getElementById('u');
+  us = u.style;
+  us.top = '40px+' + q;
+  us.left = q;
+  s = d.getElementById('s');
+  ss = s.style;
+  ss.bottom = q;
+  ss.right = q;
+  z = { x: -1, y: -1 };
+
+  // Calculate screen center
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+
+  // Create dynamic @keyframes targeting the center of the screen
+  var y = d.createElement('style');
+  y.type = 'text/css';
+  var k =
+    '@keyframes n {' +
+    '  0% { color: black; zIndex: 100; }' +
+    '  70% { color: black; }' +
+    '  90% { color: white; top: calc(' +
+    centerY +
+    'px - 1em); left: calc(' +
+    centerX +
+    'px - 1em); zIndex: 0; }' +
+    '}';
+  y.innerHTML = k;
+  d.getElementsByTagName('head')[0].appendChild(y);
+
+  de = d.documentElement;
+  h = de.clientHeight;
+  w = de.clientWidth;
+  g = Math.sqrt((z.x - w) ** 2 + (z.y - h) ** 2);
+  m = 12 / g;
+
+  setInterval(D, 500, 0);
+  setTimeout(function () {
+    d.getElementById('a').textContent +=
+      '[Drag your mouse or finger]';
+    d.addEventListener('mousemove', P);
+    d.addEventListener('touchmove', T);
+	d.addEventListener('click', W);
+  }, 14000);
+
+  function R() {
+    d.getElementById('a').textContent = '';
+  }
+  function T(e) {
+    R();
+    z.x = e.touches[0].clientX;
+    z.y = e.touches[0].clientY;
+    D();
+  }
+  function P(e) {
+    R();
+    z.x = e.clientX;
+    z.y = e.clientY;
+    D();
+  }
+  function D() {
+    var p = d.createElement('p');
+    p.textContent += 'hello?';
+    ps = p.style;
+    ps.position = 'absolute';
+    ws = window.screen;
+    if (z.x == -1) {
+      if (ws.availHeight < ws.availWidth) {
+        ps.top = u.offsetTop + 'px';
+        var v = u.offsetLeft + u.offsetWidth;
+        ps.left = v + 'px';
+      } else {
+        var v = u.offsetTop + u.offsetHeight + 'px';
+        ps.top = v;
+        ps.left = u.offsetLeft + 'px';
+      }
+    } else {
+      ps.top = z.y + 'px';
+      ps.left = z.x + 'px';
+    }
+    ps.color = 'black';
+    ps.zIndex = '0';
+    c = Math.sqrt((z.x - w) ** 2 + (z.y - h) ** 2);
+    var v = m * c;
+    ps.animation = 'n ' + v + 's linear forwards';
+    b.appendChild(p);
+  }
+	  let strs=["Where am I?","Who are you?","Where am I?", "I can't take it", "don't leave me here"];let str =strs[Math.floor(Math.random()*strs.length)];var slider=document.getElementById("speed");let speed=slider.value;let uls=document.getElementsByTagName('ul');for(let i=0;i<uls.length;i++){uls[i].style.animation="spin "+i/speed+ "s linear infinite";[...str].forEach((c)=>{const node=document.createElement("li");const textnode=document.createTextNode(c);node.appendChild(textnode);uls[i].appendChild(node);})}for(let u=0;u<uls.length;u++){lis=uls[u].children;y=50*u+200;let deg=360/lis.length;for(let i=0;i<lis.length;i++){lis[i].style.transform="translate(-50%,-50%) rotate("+(i-1)*deg+"deg) translateY(-"+y+"px) rotateX(90deg)";}}slider.oninput=function(){console.log(this.value);for(let u=0;u<uls.length;u++){uls[u].style.animation="spin "+u/this.value+"s linear infinite";}}
+	</script>
+
+	<style>
+	  .c {
+		max-width: 20%;
+		z-index: 999;
+	  }
+	</style>
+
 </body>
 </html>
