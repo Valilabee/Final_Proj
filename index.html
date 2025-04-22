@@ -7,42 +7,43 @@
 	<style>
 		body { margin:0 ; overflow:hidden; background-color: #999;}
 		a { color:#eee ; text-decoration:none }
-		header { margin:0 ; padding:0 ; background-color:#444 ; color:#bbb ;
-			position:relative ; z-index:1000 }
 		header > h1 { margin:0 ; font-size:12px ;
 			border-bottom:1px #999 solid ; padding:5px 10px ; line-height:17px }
-		.container{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;overflow:hidden;}ul{margin:0;list-style:none;font-size:3vw;transform-style:preserve-3d;}li{position:absolute;top:50%;left:50%;opacity:0.8;}@keyframes spin{0%{transform:rotateX(-100deg)rotate(0);}100%{transform:rotateX(-100deg)rotate(-360deg);}}.slidecontainer{position:absolute;bottom:5%;}
+		.container{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;overflow:hidden;}ul{margin:0;list-style:none;font-size:3vw;transform-style:preserve-3d;}li{position:absolute;top:50%;left:50%;opacity:0.8;}@keyframes spin{0%{transform:rotateX(-100deg)rotate(0);}100%{transform:rotateX(-100deg)rotate(-360deg);}}.slidecontainer{position:absolute;bottom:20%;}
 		p {
 		color: rgb(0, 0, 0);
 		font-family: "Courier New", monospace;
 		font-size: 32px;
 		line-height: 1.4;
 		margin-bottom: 0;
+    text-align:center;
 	  }
 	</style>
 </head>
 <body>
 
 	<p id="a" style="color:rgb(255, 255, 255);top:50vh;position:fixed;text-align:center;width:100%;z-index:999;background:rgb(173, 173, 173);"></p>
-<div class="c" id="u" style="position:absolute;"><p>Is anyone there?</p></div>
+<div class="c" id="u" style="position:fixed;"><p>Is anyone there?</p></div>
 <div class="c" id="s" style="position:fixed;text-align:center;"><p>I can't see</p></div>
 
 	<div class="container"><ul id="1"></ul><ul id="2"></ul><ul id="3"></ul><ul id="4"></ul><ul id="5"></ul><ul id="6"></ul><ul id="7"></ul><ul id="8"></ul><ul id="9"></ul>
-		<div class="slidecontainer">
-		<input type="range" min="0.1" max="3.0" value="0.5" step=".05" id="speed">
-		</div>
 		</div>
 
 	<script>
 	  d = document;
   b = d.body;
-  q = 'max(4vh,4vw)';
-  u = d.getElementById('u');
-  us = u.style;
-  us.top = '40px+' + q;
-  us.left = q;
-  s = d.getElementById('s');
-  ss = s.style;
+  q = 'max(4vh,5vw)';
+u = d.getElementById('u');
+us = u.style;
+us.position = 'fixed';
+us.left = '50%'; // Center horizontally
+us.transform = 'translateX(-50%)'; // Offset horizontally by 50% of the width
+
+s = d.getElementById('s');
+ss = s.style;
+ss.position = 'fixed';
+ss.left = '50%'; // Center horizontally
+ss.transform = 'translateX(-50%)'; // Offset horizontally by 50% of the width
   ss.bottom = q;
   ss.right = q;
   z = { x: -1, y: -1 };
@@ -57,7 +58,8 @@
   var k =
     '@keyframes n {' +
     '  0% { color: red; zIndex: 100; }' +
-    '  70% { color: black; }' +
+    '  30% { color: purple; }' +
+    '  60% { color: black; }' +
     '  90% { color: white; top: calc(' +
     centerY +
     'px - 1em); left: calc(' +
@@ -72,15 +74,14 @@
   w = de.clientWidth;
   g = Math.sqrt((z.x - w) ** 2 + (z.y - h) ** 2);
   m = 12 / g;
-
-  setInterval(D, 500, 0);
+//set time between beginning "hellos"
+  setInterval(D, 4000, 0);
   setTimeout(function () {
     d.getElementById('a').textContent +=
       '[Drag your mouse or finger]';
     d.addEventListener('mousemove', P);
     d.addEventListener('touchmove', T);
-	d.addEventListener('click', W);
-  }, 14000);
+  }, 4000);//change when the "Drag" message pops up
 
   function R() {
     d.getElementById('a').textContent = '';
@@ -97,6 +98,7 @@
     z.y = e.clientY;
     D();
   }
+  //place text 
   function D() {
     var p = d.createElement('p');
     p.textContent += 'hello?';
@@ -105,8 +107,8 @@
     ws = window.screen;
     if (z.x == -1) {
       if (ws.availHeight < ws.availWidth) {
-        ps.top = u.offsetTop + 'px';
-        var v = u.offsetLeft + u.offsetWidth;
+        ps.top = u.offsetTop + '30px';
+        var v = u.offsetLeft;
         ps.left = v + 'px';
       } else {
         var v = u.offsetTop + u.offsetHeight + 'px';
@@ -124,16 +126,16 @@
     ps.animation = 'n ' + v + 's linear forwards';
     b.appendChild(p);
   }
-	  let strs=["Where am I?","Who are you?","Where am I?", "I can't take it", "don't leave me here"];let str =strs[Math.floor(Math.random()*strs.length)];var slider=document.getElementById("speed");let speed=slider.value;let uls=document.getElementsByTagName('ul');for(let i=0;i<uls.length;i++){uls[i].style.animation="spin "+i/speed+ "s linear infinite";[...str].forEach((c)=>{const node=document.createElement("li");const textnode=document.createTextNode(c);node.appendChild(textnode);uls[i].appendChild(node);})}for(let u=0;u<uls.length;u++){lis=uls[u].children;y=50*u+200;let deg=360/lis.length;for(let i=0;i<lis.length;i++){lis[i].style.transform="translate(-50%,-50%) rotate("+(i-1)*deg+"deg) translateY(-"+y+"px) rotateX(90deg)";}}slider.oninput=function(){console.log(this.value);for(let u=0;u<uls.length;u++){uls[u].style.animation="spin "+u/this.value+"s linear infinite";}}
+	  let strs=["Where am I?","Who are you?","Where am I?", "I can't take it", "don't leave me here"];let str =strs[Math.floor(Math.random()*strs.length)];let speed=1;let uls=document.getElementsByTagName('ul');for(let i=0;i<uls.length;i++){uls[i].style.animation="spin "+i/speed+ "s linear infinite";[...str].forEach((c)=>{const node=document.createElement("li");const textnode=document.createTextNode(c);node.appendChild(textnode);uls[i].appendChild(node);})}for(let u=0;u<uls.length;u++){lis=uls[u].children;y=50*u+200;let deg=360/lis.length;for(let i=0;i<lis.length;i++){lis[i].style.transform="translate(-50%,-50%) rotate("+(i-1)*deg+"deg) translateY(-"+y+"px) rotateX(90deg)";}for(let u=0;u<uls.length;u++){uls[u].style.animation="spin "+u/this.value+"s linear infinite";}}
 	</script>
 
 	<style>
 	  .c {
-		max-width: 20%;
 		z-index: 999;
+    text-transform:uppercase;
 	  }
 	ul li {
-    color: rgb(141, 14, 14);
+    color: rgb(255, 0, 0);
 	font-family: "Courier New", monospace;
 
  	 }
