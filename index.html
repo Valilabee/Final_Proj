@@ -2,25 +2,13 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Website Template</title>
+	<title>One in the Void</title>
 	<link rel="stylesheet" href="./assets/css/styles.css">
-	<style>
-		body { margin:0 ; overflow:hidden; background-color: #999;}
-		a { color:#eee ; text-decoration:none }
-		header > h1 { margin:0 ; font-size:12px ;
-			border-bottom:1px #999 solid ; padding:5px 10px ; line-height:17px }
-		.container{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;overflow:hidden;}ul{margin:0;list-style:none;font-size:3vw;transform-style:preserve-3d;}li{position:absolute;top:50%;left:50%;opacity:0.8;}@keyframes spin{0%{transform:rotateX(-100deg)rotate(0);}100%{transform:rotateX(-100deg)rotate(-360deg);}}.slidecontainer{position:absolute;bottom:20%;}
-		p {
-		color: rgb(0, 0, 0);
-		font-family: "Courier New", monospace;
-		font-size: 32px;
-		line-height: 1.4;
-		margin-bottom: 0;
-    text-align:center;
-	  }
-	</style>
 </head>
 <body>
+  <div class="info">
+    <h2><a href="information.html">Click here</a></h2>
+  </div>
 
 	<p id="a" style="color:rgb(255, 255, 255);top:50vh;position:fixed;text-align:center;width:100%;z-index:999;background:rgb(173, 173, 173);"></p>
 <div class="c" id="u" style="position:fixed;"><p>Is anyone there?</p></div>
@@ -74,7 +62,7 @@ ss.transform = 'translateX(-50%)'; // Offset horizontally by 50% of the width
   w = de.clientWidth;
   g = Math.sqrt((z.x - w) ** 2 + (z.y - h) ** 2);
   m = 12 / g;
-//set time between beginning "hellos"
+//set time between beginning "hellos" w/o mouse
   setInterval(D, 4000, 0);
   setTimeout(function () {
     d.getElementById('a').textContent +=
@@ -128,18 +116,6 @@ ss.transform = 'translateX(-50%)'; // Offset horizontally by 50% of the width
   }
 	  let strs=["Where am I?","Who are you?","Where am I?", "I can't take it", "don't leave me here"];let str =strs[Math.floor(Math.random()*strs.length)];let speed=1;let uls=document.getElementsByTagName('ul');for(let i=0;i<uls.length;i++){uls[i].style.animation="spin "+i/speed+ "s linear infinite";[...str].forEach((c)=>{const node=document.createElement("li");const textnode=document.createTextNode(c);node.appendChild(textnode);uls[i].appendChild(node);})}for(let u=0;u<uls.length;u++){lis=uls[u].children;y=50*u+200;let deg=360/lis.length;for(let i=0;i<lis.length;i++){lis[i].style.transform="translate(-50%,-50%) rotate("+(i-1)*deg+"deg) translateY(-"+y+"px) rotateX(90deg)";}for(let u=0;u<uls.length;u++){uls[u].style.animation="spin "+u/this.value+"s linear infinite";}}
 	</script>
-
-	<style>
-	  .c {
-		z-index: 999;
-    text-transform:uppercase;
-	  }
-	ul li {
-    color: rgb(255, 0, 0);
-	font-family: "Courier New", monospace;
-
- 	 }
-	</style>
 
 </body>
 </html>
