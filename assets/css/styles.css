@@ -1,5 +1,5 @@
 /* styles.css */
-
+@import url('https://fonts.googleapis.com/css2?family=Jacquard+12&family=Rubik+Pixels&display=swap');
 body { margin:0 ; overflow:hidden; background-color: #312e2e;}
 a { color:#eee ; text-decoration:none }
 header > h1 { margin:0 ; font-size:12px ;
@@ -11,7 +11,7 @@ h2{
 .container{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;overflow:hidden;}ul{margin:0;list-style:none;font-size:3vw;transform-style:preserve-3d;}li{position:absolute;top:50%;left:50%;opacity:0.8;}@keyframes spin{0%{transform:rotateX(-100deg)rotate(0);}100%{transform:rotateX(-100deg)rotate(-360deg);}}.slidecontainer{position:absolute;bottom:20%;}
 p {
 color: rgb(255, 232, 24);
-font-family: "Courier New", monospace;
+font-family: "Rubik Pixels", monospace;
 font-size: 48px;
 line-height: 1.4;
 margin-bottom: 0;
@@ -23,7 +23,7 @@ text-transform:uppercase;
   }
 ul li {
 color: rgb(255, 0, 0);
-font-family: "Courier New", monospace;
+font-family: "Jacquard 12", monospace;
 
   }
 .info {
