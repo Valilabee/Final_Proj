@@ -104,8 +104,8 @@
       }
       function P(e) {
         R();
-        z.x = e.clientX;
-        z.y = e.clientY;
+        z.x = e.pageX;
+        z.y = e.pageY;
         D();
       }
       //place text
@@ -114,21 +114,8 @@
         p.textContent += "hello?";
         ps = p.style;
         ps.position = "absolute";
-        ws = window.screen;
-        if (z.x == -1) {
-          if (ws.availHeight < ws.availWidth) {
-            ps.top = u.offsetTop + "30px";
-            var v = u.offsetLeft;
-            ps.left = v + "px";
-          } else {
-            var v = u.offsetTop + u.offsetHeight + "px";
-            ps.top = v;
-            ps.left = u.offsetLeft + "px";
-          }
-        } else {
-          ps.top = z.y + "px";
-          ps.left = z.x + "px";
-        }
+        ps.top = z.y + "px"; // Use updated coordinates
+        ps.left = z.x + "px"; // Use updated coordinates
         ps.color = "black";
         ps.zIndex = "0";
         c = Math.sqrt((z.x - w) ** 2 + (z.y - h) ** 2);
@@ -136,6 +123,7 @@
         ps.animation = "n " + v + "s linear forwards";
         b.appendChild(p);
       }
+      //spinning words in the middle
       let strs = [
         "Where am I?",
         "Who are you?",
