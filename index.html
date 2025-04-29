@@ -1,122 +1,177 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>One in the Void</title>
-	<link rel="stylesheet" href="./assets/css/styles.css">
-</head>
-<body>
-  <div class="info">
-    <h2><a href="information.html">Click here</a></h2>
-  </div>
+  <head>
+    <meta charset="utf-8" />
+    <title>One in the Void</title>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body>
+    <div class="info">
+      <h2><a href="information.html">Click here</a></h2>
+    </div>
 
-	<p id="a" style="color:rgb(255, 255, 255);top:50vh;position:fixed;text-align:center;width:100%;z-index:999;background:rgb(173, 173, 173);"></p>
-<div class="c" id="u" style="position:fixed;"><p>Is anyone there?</p></div>
-<div class="c" id="s" style="position:fixed;text-align:center;"><p>I can't see</p></div>
+    <p
+      id="a"
+      style="
+        color: rgb(255, 255, 255);
+        top: 50vh;
+        position: fixed;
+        text-align: center;
+        width: 100%;
+        z-index: 999;
+        background: rgb(173, 173, 173);
+      "
+    ></p>
+    <div class="c" id="u" style="position: fixed"><p>Is anyone there?</p></div>
+    <div class="c" id="s" style="position: fixed; text-align: center">
+      <p>I can't see</p>
+    </div>
 
-	<div class="container"><ul id="1"></ul><ul id="2"></ul><ul id="3"></ul><ul id="4"></ul><ul id="5"></ul><ul id="6"></ul><ul id="7"></ul><ul id="8"></ul><ul id="9"></ul>
-		</div>
+    <div class="container">
+      <ul id="1"></ul>
+      <ul id="2"></ul>
+      <ul id="3"></ul>
+      <ul id="4"></ul>
+      <ul id="5"></ul>
+      <ul id="6"></ul>
+      <ul id="7"></ul>
+      <ul id="8"></ul>
+      <ul id="9"></ul>
+    </div>
 
-	<script>
-	  d = document;
-  b = d.body;
-  q = 'max(4vh,5vw)';
-u = d.getElementById('u');
-us = u.style;
-us.position = 'fixed';
-us.left = '50%'; // Center horizontally
-us.transform = 'translateX(-50%)'; // Offset horizontally by 50% of the width
+    <script>
+      d = document;
+      b = d.body;
+      q = "max(4vh,5vw)";
+      u = d.getElementById("u");
+      us = u.style;
+      us.position = "fixed";
+      us.left = "50%"; // Center horizontally
+      us.transform = "translateX(-50%)"; // Offset horizontally by 50% of the width
 
-s = d.getElementById('s');
-ss = s.style;
-ss.position = 'fixed';
-ss.left = '50%'; // Center horizontally
-ss.transform = 'translateX(-50%)'; // Offset horizontally by 50% of the width
-  ss.bottom = q;
-  ss.right = q;
-  z = { x: -1, y: -1 };
+      s = d.getElementById("s");
+      ss = s.style;
+      ss.position = "fixed";
+      ss.left = "50%"; // Center horizontally
+      ss.transform = "translateX(-50%)"; // Offset horizontally by 50% of the width
+      ss.bottom = q;
+      ss.right = q;
+      z = { x: -1, y: -1 };
 
-  // Calculate screen center
-  const centerX = window.innerWidth / 2;
-  const centerY = window.innerHeight / 2;
+      // Calculate screen center
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
 
-  // Create dynamic @keyframes targeting the center of the screen
-  var y = d.createElement('style');
-  y.type = 'text/css';
-  //change the color as it moves towards the center then have it shoot back once it gets close to the center
-  var k =
-    '@keyframes n {' +
-    '  0% { color: red; zIndex: 100; }' +
-    '  30% { color: purple; }' +
-    '  60% { color: black; }' +
-    '  90% { color: white; top: calc(' +
-    centerY +
-    'px - 1em); left: calc(' +
-    centerX +
-    'px - 1em); zIndex: 0; }' +
-    '}';
-  y.innerHTML = k;
-  d.getElementsByTagName('head')[0].appendChild(y);
+      // Create dynamic @keyframes targeting the center of the screen
+      var y = d.createElement("style");
+      y.type = "text/css";
+      //change the color as it moves towards the center then have it shoot back once it gets close to the center
+      var k =
+        "@keyframes n {" +
+        "  0% { color: red; zIndex: 100; }" +
+        "  30% { color: purple; }" +
+        "  60% { color: black; }" +
+        "  90% { color: white; top: calc(" +
+        centerY +
+        "px - 1em); left: calc(" +
+        centerX +
+        "px - 1em); zIndex: 0; }" +
+        "}";
+      y.innerHTML = k;
+      d.getElementsByTagName("head")[0].appendChild(y);
 
-  de = d.documentElement;
-  h = de.clientHeight;
-  w = de.clientWidth;
-  g = Math.sqrt((z.x - w) ** 2 + (z.y - h) ** 2);
-  m = 12 / g;
-//set time between beginning "hellos" w/o mouse
-  setInterval(D, 4000, 0);
-  setTimeout(function () {
-    d.getElementById('a').textContent +=
-      '[Drag your mouse or finger]';
-    d.addEventListener('mousemove', P);
-    d.addEventListener('touchmove', T);
-  }, 4000);//change when the "Drag" message pops up
+      de = d.documentElement;
+      h = de.clientHeight;
+      w = de.clientWidth;
+      g = Math.sqrt((z.x - w) ** 2 + (z.y - h) ** 2);
+      m = 12 / g;
+      //set time between beginning "hellos" w/o mouse
+      setInterval(D, 4000, 0);
+      setTimeout(function () {
+        d.getElementById("a").textContent += "[Drag your mouse or finger]";
+        d.addEventListener("mousemove", P);
+        d.addEventListener("touchmove", T);
+      }, 4000); //change when the "Drag" message pops up
 
-  function R() {
-    d.getElementById('a').textContent = '';
-  }
-  function T(e) {
-    R();
-    z.x = e.touches[0].clientX;
-    z.y = e.touches[0].clientY;
-    D();
-  }
-  function P(e) {
-    R();
-    z.x = e.clientX;
-    z.y = e.clientY;
-    D();
-  }
-  //place text 
-  function D() {
-    var p = d.createElement('p');
-    p.textContent += 'hello?';
-    ps = p.style;
-    ps.position = 'absolute';
-    ws = window.screen;
-    if (z.x == -1) {
-      if (ws.availHeight < ws.availWidth) {
-        ps.top = u.offsetTop + '30px';
-        var v = u.offsetLeft;
-        ps.left = v + 'px';
-      } else {
-        var v = u.offsetTop + u.offsetHeight + 'px';
-        ps.top = v;
-        ps.left = u.offsetLeft + 'px';
+      function R() {
+        d.getElementById("a").textContent = "";
       }
-    } else {
-      ps.top = z.y + 'px';
-      ps.left = z.x + 'px';
-    }
-    ps.color = 'black';
-    ps.zIndex = '0';
-    c = Math.sqrt((z.x - w) ** 2 + (z.y - h) ** 2);
-    var v = m * c;
-    ps.animation = 'n ' + v + 's linear forwards';
-    b.appendChild(p);
-  }
-	  let strs=["Where am I?","Who are you?","Where am I?", "I can't take it", "don't leave me here"];let str =strs[Math.floor(Math.random()*strs.length)];let speed=1;let uls=document.getElementsByTagName('ul');for(let i=0;i<uls.length;i++){uls[i].style.animation="spin "+i/speed+ "s linear infinite";[...str].forEach((c)=>{const node=document.createElement("li");const textnode=document.createTextNode(c);node.appendChild(textnode);uls[i].appendChild(node);})}for(let u=0;u<uls.length;u++){lis=uls[u].children;y=50*u+200;let deg=360/lis.length;for(let i=0;i<lis.length;i++){lis[i].style.transform="translate(-50%,-50%) rotate("+(i-1)*deg+"deg) translateY(-"+y+"px) rotateX(90deg)";}for(let u=0;u<uls.length;u++){uls[u].style.animation="spin "+u/this.value+"s linear infinite";}}
-	</script>
-
-</body>
+      function T(e) {
+        R();
+        z.x = e.touches[0].clientX;
+        z.y = e.touches[0].clientY;
+        D();
+      }
+      function P(e) {
+        R();
+        z.x = e.clientX;
+        z.y = e.clientY;
+        D();
+      }
+      //place text
+      function D() {
+        var p = d.createElement("p");
+        p.textContent += "hello?";
+        ps = p.style;
+        ps.position = "absolute";
+        ws = window.screen;
+        if (z.x == -1) {
+          if (ws.availHeight < ws.availWidth) {
+            ps.top = u.offsetTop + "30px";
+            var v = u.offsetLeft;
+            ps.left = v + "px";
+          } else {
+            var v = u.offsetTop + u.offsetHeight + "px";
+            ps.top = v;
+            ps.left = u.offsetLeft + "px";
+          }
+        } else {
+          ps.top = z.y + "px";
+          ps.left = z.x + "px";
+        }
+        ps.color = "black";
+        ps.zIndex = "0";
+        c = Math.sqrt((z.x - w) ** 2 + (z.y - h) ** 2);
+        var v = m * c;
+        ps.animation = "n " + v + "s linear forwards";
+        b.appendChild(p);
+      }
+      let strs = [
+        "Where am I?",
+        "Who are you?",
+        "Where am I?",
+        "I can't take it",
+        "don't leave me here",
+      ];
+      let str = strs[Math.floor(Math.random() * strs.length)];
+      let speed = 1;
+      let uls = document.getElementsByTagName("ul");
+      for (let i = 0; i < uls.length; i++) {
+        uls[i].style.animation = "spin " + i / speed + "s linear infinite";
+        [...str].forEach((c) => {
+          const node = document.createElement("li");
+          const textnode = document.createTextNode(c);
+          node.appendChild(textnode);
+          uls[i].appendChild(node);
+        });
+      }
+      for (let u = 0; u < uls.length; u++) {
+        lis = uls[u].children;
+        y = 50 * u + 200;
+        let deg = 360 / lis.length;
+        for (let i = 0; i < lis.length; i++) {
+          lis[i].style.transform =
+            "translate(-50%,-50%) rotate(" +
+            (i - 1) * deg +
+            "deg) translateY(-" +
+            y +
+            "px) rotateX(90deg)";
+        }
+        for (let u = 0; u < uls.length; u++) {
+          uls[u].style.animation =
+            "spin " + u / this.value + "s linear infinite";
+        }
+      }
+    </script>
+  </body>
 </html>
