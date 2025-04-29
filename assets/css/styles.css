@@ -1,6 +1,9 @@
 /* styles.css */
 @import url('https://fonts.googleapis.com/css2?family=Jacquard+12&family=Rubik+Pixels&display=swap');
-body { margin:0 ; overflow:hidden; background-color: #312e2e;}
+body { margin:0 ; 
+	overflow:hidden; 
+	background:rgb(58, 58, 58);
+}
 a { color:#eee ; text-decoration:none }
 header > h1 { margin:0 ; font-size:12px ;
 	border-bottom:1px #999 solid ; padding:5px 10px ; line-height:17px }
@@ -22,7 +25,7 @@ text-align:center;
 text-transform:uppercase;
   }
 ul li {
-color: rgb(255, 0, 0);
+color: rgb(13, 255, 0);
 font-family: "Jacquard 12", monospace;
 
   }
